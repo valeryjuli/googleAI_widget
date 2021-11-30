@@ -1,7 +1,7 @@
 <script lang='ts'>
     import ImagePreview from './image_preview.svelte';
     import ImageFullArea from './image_fullArea.svelte';
-	import { ImageGalleryStore } from './image_gallery_store';
+	import { WidgetStore } from '../widget_store';
 
 	import ImageUpload from './image_upload.svelte';
 
@@ -12,13 +12,11 @@
 			<div class="image-drop-zone">
 				<ImageUpload/>
 			</div>
-			{#each $ImageGalleryStore.images as image}
+			{#each $WidgetStore.images as image}
 				<ImagePreview widgetImage = {image}/>
 			{/each}
 		</div>
-		{#if $ImageGalleryStore.previewMode === false}
-				<ImageFullArea/>
-		{/if}
+		<ImageFullArea/>
 	</div>
 
 <style>
@@ -36,12 +34,13 @@
 	.image-browser-container {
 		position: relative;
 		display: flex;
-		flex-direction: column;
-		width: 52vmin;
+		flex-direction: row;
+		width: 100vmin;
 		height: 76vmin;
 		border: 0.3vmin solid #ccc;
-		padding: 3vmin;
+		padding: 1vmin;
 		border-radius: 2vmin;
+		column-gap: 1vmin;
 	}
 
 	h1 {

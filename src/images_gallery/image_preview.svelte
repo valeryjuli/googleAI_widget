@@ -1,11 +1,11 @@
 <script lang='ts'>
     import type { WidgetImage } from '../types/widget_types';
-    import { ImageGalleryStore } from './image_gallery_store';
+    import { WidgetStore } from '../widget_store';
 
     /**
      * Transition croosfade callbacks
      */
-	const {send, receive} = $ImageGalleryStore;
+	const {send, receive} = $WidgetStore;
 
     /**
      * Props
@@ -15,12 +15,12 @@
 
 <div class="image-preview-container">
     <img
-        class={$ImageGalleryStore.selectedImage === widgetImage ? "active-image" : "image"}
-        src = {widgetImage.path}
+        class={$WidgetStore.selectedImage === widgetImage ? "active-image" : "image"}
+        src = {widgetImage.base64}
         alt = {widgetImage.alt}
         on:click = {() =>  {
-            $ImageGalleryStore.previewMode = false;
-            $ImageGalleryStore.selectedImage = widgetImage;
+            $WidgetStore.previewMode = false;
+            $WidgetStore.selectedImage = widgetImage;
         }}
         in:receive={{key:widgetImage.id}}
         out:send={{key:widgetImage.id}}

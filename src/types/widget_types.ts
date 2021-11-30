@@ -11,7 +11,7 @@ export interface WidgetImage {
      */
     alt: string;
     /**
-     * Image path
+     * Image in base64
      */
-    path: string;
+    base64: string;
 }

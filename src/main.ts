@@ -1,4 +1,4 @@
-import App from './cv_widget.svelte';
+import App from './imageProcessing_widget.svelte';
 import "tailwindcss/tailwind.css"
 
 const app = new App({

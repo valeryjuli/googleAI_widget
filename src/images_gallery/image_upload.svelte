@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { WidgetImage } from "../types/widget_types";
 
-import { ImageGalleryStore } from "./image_gallery_store";
+import { WidgetStore } from "../widget_store";
 
     /**
      * Internal state
@@ -61,64 +61,73 @@ import { ImageGalleryStore } from "./image_gallery_store";
         dragging = false;
 
         getFilesFunction(event).then((file) => {
-            console.log(file)
-        const fileReader = new FileReader();
+            const fileReader = new FileReader();
+            fileReader.onload = (fileLoadedEvent: ProgressEvent<FileReader>) => {
+                const srcData = fileLoadedEvent.target.result;
+                
+                const newGalleryImage: WidgetImage = {
+                    id: 1,
+                    alt: 'todo',
+                    base64: srcData as string,
+                }
+                const oldImages = $WidgetStore.images;
+                $WidgetStore.images = [newGalleryImage, ...oldImages.slice(0, -1)];
+                $WidgetStore.selectedImage = newGalleryImage;
 
-        fileReader.onload = (fileLoadedEvent) => {
-            const srcData = fileLoadedEvent.target.result;
-            const newGalleryImage: WidgetImage = {
-                id: 1,
-                alt: 'todo',
-                path: srcData as string,
+
             }
-            const oldImages = $ImageGalleryStore.images;
-            $ImageGalleryStore.images = [newGalleryImage, ...oldImages.slice(0, -1)];
-            console.log($ImageGalleryStore.images);
-        }
-        fileReader.readAsDataURL(file);
-
+            fileReader.readAsDataURL(file);
         });
     };
 </script>
-<div class="image-upload-container">
-    <label
-        class:dragging
-        on:drop|preventDefault = {onFileSelected(getFilesFromDropEvent)}
-        on:dragover|preventDefault={() => dragging = true}
-        on:dragleave|preventDefault={() => dragging = false}>
-        <slot {dragging}>
-            <div class="slot">
-                Drag &amp; Drop your file(s) or
-                <strong>browse.</strong>
-            </div>
-        </slot>
+<div class="image-upload-container"
+    on:drop|preventDefault = {onFileSelected(getFilesFromDropEvent)}
+    on:dragover|preventDefault={() => dragging = true}
+    on:dragleave|preventDefault={() => dragging = false}>
+    <div class="input-container">
         <input
-            bind:this = {inputElement}
-            type="file"
-            on:input={onFileSelected(getFilesFromInputEvent)}
-            accept="image/*" />
-    </label>
+        bind:this = {inputElement}
+        name="image-upload"
+        id="image-upload"
+        type="file"
+        on:input={onFileSelected(getFilesFromInputEvent)}
+        accept="image/*" />
+        <label for="image-upload">Drag &amp; Drop your image or click to browse</label>
+        
+    </div>
 </div>
 
 <style>
+
+    label {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    } 
+
+    .input-container {
+        height: 100%;
+        width: 100%;
+    }
+
     input {
         position: absolute !important;
-        height: 1px;
-        width: 1px;
         overflow: hidden;
         clip: rect(1px 1px 1px 1px);
         clip: rect(1px, 1px, 1px, 1px);
         white-space: nowrap;
     }
-    .slot {
+
+    .image-upload-container {
+        position: relative;
+        height: 100%;
         padding: 20px;
         border: 1px solid gray;
         border-radius: 5px;
         text-align: center;
         cursor: pointer;
-    }
-    .upload {
-        width: 50%;
-        margin: auto;
     }
 </style>
