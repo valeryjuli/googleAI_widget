@@ -10,7 +10,6 @@ export enum GoogleAPIFeatures {
     LABEL_DETECTION = 'Label Detection',
     TEXT_DETECTION = 'Text Detection',
     OBJECT_LOCALIZATION = 'Object Localization',
-    PRODUCT_SEARCH= 'Product Search',
 }
 
 /**
@@ -37,6 +36,7 @@ function createWidgetStore() {
         images: demoImagesLibrary,
         selectedFeature: null,
         loadingResult: false,
+        result: null,
     });
 
     return {
