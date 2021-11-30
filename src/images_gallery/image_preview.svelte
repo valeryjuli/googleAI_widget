@@ -36,7 +36,6 @@
 		height: 100%;
         position: relative;
         overflow: hidden;
-        border-radius: 6px;
         object-fit: cover;
     }
 

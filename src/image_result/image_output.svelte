@@ -24,6 +24,7 @@
         height: 100%;
         border-radius: 15px;
         padding: auto;
+        overflow: hidden;
     }
 
     .image-output > img{

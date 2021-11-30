@@ -15,6 +15,9 @@ import ImageOutputPanel from "./image_result/image_output_panel.svelte";
 	.widget-container {
 		display: flex;
 		flex-direction: row;
+		position: absolute;
+		height: 50vmin;
+		width: 50vw;
 	}
 </style>
 

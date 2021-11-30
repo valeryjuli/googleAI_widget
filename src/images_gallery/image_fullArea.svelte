@@ -23,15 +23,14 @@
 
 <style>
     .image-fullArea {
-        flex: 1;
+        flex: 3;
         width: 100%;
         height: 100%;
-        border-radius: 15px;
         padding: auto;
+        overflow: hidden;
     }
 
     .image-fullArea > img{
-        border-radius: 15px;
         width: 100%;
         height: 100%;
         object-fit: cover;

@@ -73,8 +73,6 @@ import { WidgetStore } from "../widget_store";
                 const oldImages = $WidgetStore.images;
                 $WidgetStore.images = [newGalleryImage, ...oldImages.slice(0, -1)];
                 $WidgetStore.selectedImage = newGalleryImage;
-
-
             }
             fileReader.readAsDataURL(file);
         });
@@ -113,7 +111,7 @@ import { WidgetStore } from "../widget_store";
         width: 100%;
     }
 
-    input {
+    .input-container > input {
         position: absolute !important;
         overflow: hidden;
         clip: rect(1px 1px 1px 1px);
@@ -122,10 +120,10 @@ import { WidgetStore } from "../widget_store";
     }
 
     .image-upload-container {
+        font-size: 1.5vmin;
         position: relative;
-        height: 100%;
         padding: 20px;
-        border: 1px solid gray;
+        border: 2px dashed rgba(28,110,164,0.33);
         border-radius: 5px;
         text-align: center;
         cursor: pointer;

@@ -32,7 +32,7 @@ function createWidgetStore() {
     const { update, subscribe, set } = writable({
         send,
         receive,
-        selectedImage: null,
+        selectedImage: demoImagesLibrary[1],
         previewMode: true,
         images: demoImagesLibrary,
         selectedFeature: null,
