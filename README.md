@@ -1,109 +1,78 @@
-*Psst — looking for a more complete solution? Check out [SvelteKit](https://kit.svelte.dev), the official framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.*
 
-*Looking for a shareable component template instead? You can [use SvelteKit for that as well](https://kit.svelte.dev/docs#packaging) or the older [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Google Vision Widget
 
----
+This repository contains the svelte project for the Google Vision Widget. The Widget allows to upload and select an image to be processed with the *Cloud Vision API*
+of Google for the following features:
 
-# svelte app
+*  Object localization
+* Text detection
+* Label detection
+* Face detection
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+## Demo
+The widget can be tested directly by cloning this repository and opening `./test/index.html`
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+<img src="./assets/demo1.gif" height=600>
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+## Specifications
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+The following table specifies the outputs of each feature
 
+| Feature  |  Description  | 
+|---|---|
+|Object Localization   | Shows the first 10 identified objects on the image and the confidence score for each one with matching colors  |  
+|Text Detection   | Shows the full identified text from the image  |   
+|Label Detection   | Shows the first 10 labels identified and their scores  |   
+|Face Detection   | Shows the faces identified and their likelihood of 'JOY' state  |   
 
-## Get started
+> :warning: If the response from Google Vision API is **empty** a tag with `No results` is shown
 
-Install the dependencies...
+### How to use?
+The widget can be embedded on any HTML page as a Web-Component of itself, as an example the following HTML page will contain the widget:
+````html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
 
-```bash
-cd svelte-app
-npm install
-```
+	<title>Test of GoogleAPI Widget</title>
 
-...then start [Rollup](https://rollupjs.org):
+	<link rel='stylesheet' href='../public/build/bundle.css'>
+	<link rel='stylesheet' href='../public/global.css'>
 
-```bash
-npm run dev
-```
+	<script defer src='../public/build/bundle.js'></script>
+</head>
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+<body>
+    <div>
+        <googleVision-widget></googleVision-widget>
+    </div>
+</body>
+</html>
+````
+It is required to add the files:
+* `bundle.css`
+* `global.css`
+* `bundle.js`
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+in order for the widget to work.
+## Deployment
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+To deploy this project run
 
 ```bash
-node scripts/setupTypeScript.js
+  npm run dev
 ```
+Then open `http://localhost:5000` to view the working widget demo page
 
-Or remove the script via:
+## Future enhancements
 
-```bash
-rm scripts/setupTypeScript.js
-```
+This is a non-exhaustive list of future enhancements to add:
 
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+* Allow to pass the max number of items to detect
+* Add a section to visualize all the response data
+* Allow to drop image directly on the large viewer
+* Allow image batch uploads
+* Use Tailwind CSS for style management
+* Add night/day modes
