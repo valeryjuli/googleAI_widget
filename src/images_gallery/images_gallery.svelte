@@ -7,12 +7,12 @@
 
 	<div class="images-gallery-container">
 		<ImageUpload/>
-		<ImageFullArea/>
 		<div class="images-grid">
 			{#each $WidgetStore.images as image}
-				<ImagePreview widgetImage = {image}/>
+			<ImagePreview widgetImage = {image}/>
 			{/each}
 		</div>
+		<ImageFullArea/>
 	</div>
 
 <style>
@@ -22,7 +22,6 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
-		padding: 1vmin;
 		column-gap: 1vmin;
 		flex: 1;
 	}

@@ -22,7 +22,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        font-size: 2vmin;
+        font-size: 1.5vmin;
         border-radius: 15px;
         height: 20px;
         padding: 5px;

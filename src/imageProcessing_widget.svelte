@@ -3,10 +3,12 @@
 	import ImageOutputPanel from "./image_result/image_output_panel.svelte";
 </script>
 
+<svelte:options tag="googleVision-widget"/>
+
 <main>
 	<h1 class="widget-title">HuggingFace Widget</h1>
 	<div class="widget-steps">
-		<p>1. Drop an image on the White area or click to upload an image from a local file</p>
+		<p>1. Drop an image on the White area, click to upload an image from a local file or select one pre-loaded image</p>
 		<p>2. Select the feature to process the image</p>
 		<p>3. Click on the <strong>Go!</strong> button and visualize the result and the tags</p>
 	</div>
@@ -27,6 +29,7 @@
 	.widget-title {
 		display: flex;
 		justify-content: center;
+		font-size: 1em;
 	}
 
 	.widget-container {
@@ -39,6 +42,6 @@
 
 	main {
 		height: 100%;
-		width: 50%;
+		width: 80%;
 	}
 </style>

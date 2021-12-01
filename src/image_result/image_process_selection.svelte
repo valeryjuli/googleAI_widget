@@ -12,7 +12,7 @@
 <div class="image-process-menu">
     {#each Object.keys(GoogleAPIFeatures) as feature }
         <label>
-            <input type="radio" bind:group={$WidgetStore.selectedFeature} name="feature" value={feature}>
+            <input type="radio" bind:group={$WidgetStore.selectedFeature} name="feature" value={feature} on:click={() => imageOutputResponse = null}>
             {GoogleAPIFeatures[feature]}
         </label>
     {/each}
@@ -25,6 +25,7 @@
         flex-wrap: wrap;
         align-items: center;
         justify-items: center;
+        padding: 2%;
     }
 
     .image-process-menu > label{

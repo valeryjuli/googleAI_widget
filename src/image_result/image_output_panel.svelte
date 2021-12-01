@@ -41,7 +41,6 @@
             return response.json()
         }).then((responseData) => {
             const responses = responseData.responses;
-            console.log(responses)
             imageOutputResponse = responses;
             loadingResult = false;
         })
@@ -64,14 +63,13 @@
     .image-processing-panel {
         display: flex;
         flex-direction: column;
-        flex: 1;
         justify-content: center;
         font-size: 2vmin;
     }
 
     .go-button {
         background-color: rgba(17, 38, 53, 0.959);
-        flex: 1;
+        flex: 0;
         justify-content: center;
         border: none;
         color: white;

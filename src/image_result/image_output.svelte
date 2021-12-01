@@ -1,5 +1,6 @@
 <script lang='ts'>
     import { CardContent, EntityAnnotation, FaceAnnotation, GoogleAPIResponse, GoogleAPIResponseTypes, ImageAnnotation, LocalizedObjectAnnotation, TextAnnotation } from "../types/widget_types";
+    import { WidgetStore, GoogleAPIFeatures } from "../widget_store";
     import AnnotatedImage from "./annotated_image.svelte";
     import ResultCard from "./image_result_card.svelte";
 
@@ -25,6 +26,7 @@
             const typeOfResult = Object.keys(outputObject)[0];
             cardsContent = [];
             imageAnnotations = [];
+            console.log($WidgetStore.selectedFeature)
             switch (typeOfResult) {
                 case GoogleAPIResponseTypes.TEXT_DETECTION:
                     const outputTextAnnotation = outputObject['fullTextAnnotation'] as TextAnnotation;
@@ -89,15 +91,15 @@
 </script>
 
 <div class="image-output">
-    {#if imageOutputResponse}
-        {#if !loadingResult}
-        <AnnotatedImage bind:imageAnnotations = {imageAnnotations} {imageOutputResponse}/>
+    {#if imageOutputResponse && !loadingResult}
+        {#if GoogleAPIFeatures[$WidgetStore.selectedFeature] === GoogleAPIFeatures.OBJECT_LOCALIZATION || GoogleAPIFeatures[$WidgetStore.selectedFeature] === GoogleAPIFeatures.FACE_DETECTION}
+            <AnnotatedImage bind:imageAnnotations = {imageAnnotations} {imageOutputResponse}/>
+        {/if}
         <div class="image-cards-output">
             {#each cardsContent as cardContent}
                 <ResultCard cardContent={cardContent}/>
             {/each}
         </div>
-        {/if}
     {/if}
     {#if loadingResult}
         <img alt="loading" src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-size_restricted.gif">
