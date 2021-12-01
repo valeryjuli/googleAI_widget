@@ -78,6 +78,7 @@ import { WidgetStore } from "../widget_store";
         });
     };
 </script>
+
 <div class="image-upload-container"
     on:drop|preventDefault = {onFileSelected(getFilesFromDropEvent)}
     on:dragover|preventDefault={() => dragging = true}
@@ -90,7 +91,7 @@ import { WidgetStore } from "../widget_store";
         type="file"
         on:input={onFileSelected(getFilesFromInputEvent)}
         accept="image/*" />
-        <label for="image-upload">Drag &amp; Drop your image or click to browse</label>
+        <label for="image-upload">Drop your image HERE or -<strong> click </strong>- to upload from local file</label>
         
     </div>
 </div>
@@ -104,6 +105,7 @@ import { WidgetStore } from "../widget_store";
         width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
     } 
 
     .input-container {
@@ -123,7 +125,7 @@ import { WidgetStore } from "../widget_store";
         font-size: 1.5vmin;
         position: relative;
         padding: 20px;
-        border: 2px dashed rgba(28,110,164,0.33);
+        border: 1px dashed rgba(17, 38, 53, 0.959);
         border-radius: 5px;
         text-align: center;
         cursor: pointer;

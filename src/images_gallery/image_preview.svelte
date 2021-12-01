@@ -3,11 +3,6 @@
     import { WidgetStore } from '../widget_store';
 
     /**
-     * Transition croosfade callbacks
-     */
-	const {send, receive} = $WidgetStore;
-
-    /**
      * Props
      */
     export let widgetImage: WidgetImage;
@@ -22,8 +17,6 @@
             $WidgetStore.previewMode = false;
             $WidgetStore.selectedImage = widgetImage;
         }}
-        in:receive={{key:widgetImage.id}}
-        out:send={{key:widgetImage.id}}
     >
 </div>
 

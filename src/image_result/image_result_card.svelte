@@ -3,11 +3,11 @@
     /**
      * Props
     */
-   export let cardContent: CardContent;
+    export let cardContent: CardContent;
 
 </script>
 
-<div class='image-result-card' style = 'border: 1px solid {cardContent.color}'>
+<div class='image-result-card' style = 'border: 2px solid {cardContent.color}'>
     <p >{cardContent.description}</p>
     {#if cardContent.score}
         <strong>: {Math.round(cardContent.score * 100) / 100}</strong>

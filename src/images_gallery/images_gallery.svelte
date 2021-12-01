@@ -2,9 +2,7 @@
     import ImagePreview from './image_preview.svelte';
     import ImageFullArea from './image_fullArea.svelte';
 	import { WidgetStore } from '../widget_store';
-
 	import ImageUpload from './image_upload.svelte';
-
 </script>
 
 	<div class="images-gallery-container">
@@ -22,10 +20,11 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		width: 40%;
+		width: 100%;
 		height: 100%;
 		padding: 1vmin;
 		column-gap: 1vmin;
+		flex: 1;
 	}
 
 	.images-grid {

@@ -26,6 +26,9 @@ export  interface CardContent {
    likelihood?: string,
 }
 
+/**
+ * Image annotation interface
+ */
 export  interface ImageAnnotation {
   description: string,
   boundingPoly: BoundingPoly,

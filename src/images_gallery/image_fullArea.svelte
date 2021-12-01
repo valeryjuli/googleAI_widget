@@ -1,13 +1,8 @@
 <script lang='ts'>
     import { WidgetStore } from '../widget_store';
-
-    /**
-     * Transition croosfade callbacks
-     */
-     const {send, receive} = $WidgetStore;
 </script>
 
-<div class="image-fullArea" in:receive={{key:$WidgetStore.selectedImage.id}} out:send={{key:$WidgetStore.selectedImage.id}}>
+<div class="image-fullArea">
     {#if $WidgetStore.selectedImage}
         <img
             alt = {$WidgetStore.selectedImage.alt}
@@ -23,7 +18,7 @@
 
 <style>
     .image-fullArea {
-        flex: 3;
+        flex: 5;
         width: 100%;
         height: 100%;
         padding: auto;
